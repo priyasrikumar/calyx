@@ -35,8 +35,9 @@ jobs:
     - name: Install dependencies
       run: |
         cd vcalyx
-        opam install dune
         opam install . --deps-only 
     - name: Build with dune
       run: |
+        cd vcalyx
+        opam install dune
         opam exec -- dune build
