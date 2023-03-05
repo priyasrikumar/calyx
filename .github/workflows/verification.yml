@@ -38,7 +38,7 @@ jobs:
         cd vcalyx
         opam install dune
         opam install . --deps-only 
-        opam install yojson core core_unix 
+        opam install coq yojson core core_unix ppx_deriving
     - name: Build with dune
       run: |
         cd vcalyx
