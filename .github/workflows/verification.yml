@@ -29,15 +29,15 @@ jobs:
       with:
           ocaml-compiler: 4.13.1
     - name: Checkout commit that triggered run
-      working-directory: cucapra/calyx/vcalyx
+      working-directory: home/calyx
       run: |
         git fetch --all
         git checkout $GITHUB_SHA
     - name: Install dependencies
-      working-directory: cucapra/calyx/vcalyx
+      working-directory: home/calyx
       run: |
         opam install . --deps-only 
     - name: Build with dune
-      working-directory: cucapra/calyx/vcalyx
+      working-directory: home/calyx
       run: |
         opam exec -- dune build
