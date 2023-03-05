@@ -1,0 +1,13 @@
+(library
+ (name vcalyx)
+ (public_name vcalyx)
+ (modules vcalyx)
+ (libraries extr yojson))
+
+(executable
+ (name vcx)
+ (public_name vcx)
+ (modules vcx)
+ (libraries core core_unix.command_unix vcalyx yojson)
+ (preprocess
+  (pps ppx_let ppx_deriving.show)))
