@@ -37,8 +37,9 @@ jobs:
       run: |
         cd vcalyx
         opam install dune
+        opam repo add coq-released https://coq.inria.fr/opam/released
         opam install . --deps-only 
-        opam install coq yojson core core_unix ppx_deriving
+        opam install coq yojson core core_unix ppx_deriving coq-stdpp
     - name: Build with dune
       run: |
         cd vcalyx
