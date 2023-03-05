@@ -35,9 +35,10 @@ jobs:
     - name: Install dependencies
       run: |
         cd vcalyx
+        opam install dune
         opam install . --deps-only 
+        opam install yojson core core_unix.command_unix 
     - name: Build with dune
       run: |
         cd vcalyx
-        opam install dune
         opam exec -- dune build
