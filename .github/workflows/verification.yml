@@ -18,8 +18,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Get bwrap
       run: |
-        sudo apt-get update -y
-        sudo apt-get install -y bubblewrap
+        apt-get update -y
+        apt-get install -y bubblewrap
     - name: Use OCaml 4.13.1
       uses: ocaml/setup-ocaml@v2
       with:
