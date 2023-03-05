@@ -1,5 +1,6 @@
 name: Verification
 
+# Right now, we should only run this check on the vcalyx branch
 on:  
   push:
     branches:
@@ -20,11 +21,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2
-    - name: Get bwrap
+    - name: Get bwrap for opam
       run: |
         apt-get update -y
         apt-get install -y bubblewrap
-    - name: Use OCaml 4.13.1
+    - name: Set up opam and OCaml 4.13.1
       uses: ocaml/setup-ocaml@v2
       with:
           ocaml-compiler: 4.13.1
@@ -37,7 +38,7 @@ jobs:
         cd vcalyx
         opam install dune
         opam install . --deps-only 
-        opam install yojson core core_unix.command_unix 
+        opam install yojson core core_unix 
     - name: Build with dune
       run: |
         cd vcalyx
