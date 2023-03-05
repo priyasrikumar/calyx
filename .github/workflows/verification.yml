@@ -1,0 +1,32 @@
+name: Verification
+
+on: [push]
+
+# Ensures that only the latest commit of a PR can execute the actions.
+# Useful for cancelling job when a sequence of commits are quickly added.
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build VCalyx
+    runs-on: ubuntu-latest
+    container: ghcr.io/cucapra/calyx:latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with: 
+        ocaml-compiler: 4.13.1
+    - name: Checkout commit that triggered run
+      working-directory: /home/calyx/vcalyx
+      run: |
+        git fetch --all
+        git checkout $GITHUB_SHA
+    - name: Install dependencies
+      working-directory: /home/calyx/vcalyx
+      run: |
+        opam install . --deps-only 
+    - name: Build VCalyx
+      run: |
+        opam exec -- dune build
