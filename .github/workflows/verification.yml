@@ -1,6 +1,9 @@
 name: Verification
 
-on: [push]
+on:  
+  push:
+    branches:
+      - vcalyx
 
 # Ensures that only the latest commit of a PR can execute the actions.
 # Useful for cancelling job when a sequence of commits are quickly added.
